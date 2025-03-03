@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="demo.css" />
+    <title>Web Design Mastery | HealthCare</title>
+</head>
+<body>
+<header>
+    <nav class="section__container nav__container">
+        <div class="nav__logo">Health<span>Care</span></div>
+        <ul class="nav__links">
+            <li class="link"><a href="#home">Home</a></li>
+            <li class="link"><a href="#about">About Us</a></li>
+            <li class="link">
+                <a href="#service">Services</a>
+                <ul class="submenu">
+                    <li><a href="#ambulance">Ambulance Service</a></li>
+                    <li><a href="#laboratory">Laboratory Test</a></li>
+                    <li><a href="#health-check">Health Check</a></li>
+                    <li><a href="#dentistry">General Dentistry</a></li>
+                </ul>
+            </li>
+            <li class="link"><a href="#pages">Pages</a></li>
+            <li class="link"><a href="#blog">Blog</a></li>
+        </ul>
+        <button class="btn" type="button">Contact Us</button>
+    </nav>
+    <div class="section__container header__container" id="home">
+        <div class="header__content">
+            <h1>Providing an Exceptional Patient Experience</h1>
+            <p>Welcome, where exceptional patient experiences are our priority. With compassionate care, state-of-the-art facilities, and a patient-centered approach, we're dedicated to your well-being. Trust us with your health and experience the difference.</p>
+            <button class="btn" type="button">See Services</button>
+        </div>
+        <div class="header__form">
+            <form id="bookingForm">
+                <h4>Book Now</h4>
+                <input type="text" placeholder="First Name" required />
+                <input type="text" placeholder="Last Name" required />
+                <input type="text" placeholder="Address" required />
+                <input type="tel" placeholder="Phone No." required />
+                <button class="btn form__btn" type="submit">Book Appointment</button>
+            </form>
+        </div>
+    </div>
+</header>
+
+<!-- Other sections remain unchanged -->
+
+<footer class="footer">
+    <div class="section__container footer__container">
+        <div class="footer__col">
+            <h3>Health<span>Care</span></h3>
+            <p>We are honored to be a part of your healthcare journey and committed to delivering compassionate, personalized, and top-notch care every step of the way.</p>
+            <p>Trust us with your health, and let us work together to achieve the best possible outcomes for you and your loved ones.</p>
+        </div>
+        <div class="footer__col">
+            <h4>About Us</h4>
+            <p><a href="#home">Home</a></p>
+            <p><a href="#about">About Us</a></p>
+            <p><a href="#" class="footer-link">Work With Us</a></p>
+            <p><a href="#blog">Our Blog</a></p>
+            <p><a href="#" class="footer-link">Terms & Conditions</a></p>
+        </div>
+        <div class="footer__col">
+            <h4>Services</h4>
+            <p><a href="#" class="footer-link">Search Terms</a></p>
+            <p><a href="#" class="footer-link">Advance Search</a></p>
+            <p><a href="#" class="footer-link">Privacy Policy</a></p>
+            <p><a href="#" class="footer-link">Suppliers</a></p>
+            <p><a href="#" class="footer-link">Our Stores</a></p>
+        </div>
+        <div class="footer__col">
+            <h4>Contact Us</h4>
+            <p><i class="ri-map-pin-2-fill"></i> 123, London Bridge Street, London</p>
+            <p><i class="ri-mail-fill"></i> support@care.com</p>
+            <p><i class="ri-phone-fill"></i> (+012) 3456 789</p>
+        </div>
+    </div>
+    <div class="footer__bar">
+        <div class="footer__bar__content">
+            <p>Copyright © 2023 Web Design Mastery. All rights reserved.</p>
+            <div class="footer__socials">
+                <span><i class="ri-instagram-line"></i></span>
+                <span><i class="ri-facebook-fill"></i></span>
+                <span><i class="ri-heart-fill"></i></span>
+                <span><i class="ri-twitter-fill"></i></span>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const serviceLink = document.querySelector('.link a[href="#service"]');
+        const submenu = document.querySelector('.submenu');
+
+        serviceLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            submenu.classList.toggle('active');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!serviceLink.contains(e.target) && !submenu.contains(e.target)) {
+                submenu.classList.remove('active');
+            }
+        });
+
+        const links = document.querySelectorAll('a[href^="#"]');
+        links.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        const contactBtn = document.querySelector('.btn[type="button"]');
+        contactBtn.addEventListener('click', () => {
+            alert('Contact form will be implemented here.');
+        });
+
+        const seeServicesBtn = document.querySelector('.header__content .btn[type="button"]');
+        seeServicesBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const servicesSection = document.querySelector('#service');
+            if (servicesSection) {
+                servicesSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+
+        const form = document.getElementById('bookingForm');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const inputs = form.querySelectorAll('input');
+            let valid = true;
+
+            inputs.forEach(input => {
+                if (input.value.trim() === '') {
+                    valid = false;
+                    input.classList.add('error');
+                } else {
+                    input.classList.remove('error');
+                }
+            });
+
+            if (!valid) {
+                alert('Please fill in all fields.');
+            } else {
+                alert('Appointment booked successfully!');
+                form.reset();
+            }
+        });
+
+        const inputs = form.querySelectorAll('input');
+        inputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                input.classList.remove('error');
+            });
+        });
+
+        const socialMediaLinks = {
+            instagram: 'https://instagram.com',
+            facebook: 'https://facebook.com',
+            heart: 'https://example.com',
+            twitter: 'https://twitter.com'
+        };
+
+        const socials = document.querySelectorAll('.footer__socials span');
+        socials.forEach(social => {
+            social.addEventListener('click', (e) => {
+                const iconClass = e.target.classList[0];
+                const platform = Object.keys(socialMediaLinks).find(key => iconClass.includes(key));
+                if (platform) {
+                    window.open(socialMediaLinks[platform], '_blank');
+                }
+            });
+        });
+
+        const footerLinks = document.querySelectorAll('.footer__col h4, .footer__col p');
+        footerLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                const text = e.target.textContent.trim();
+                switch (text) {
+                    case 'Home':
+                        window.location.href = '#home';
+                        break;
+                    case 'About Us':
+                        window.location.href = '#about';
+                        break;
+                    case 'Work With Us':
+                        alert('Work With Us page will be implemented here.');
+                        break;
+                    case 'Our Blog':
+                        window.location.href = '#blog';
+                        break;
+                    case 'Terms & Conditions':
+                        alert('Terms & Conditions page will be implemented here.');
+                        break;
+                    case 'Search Terms':
+                    case 'Advance Search':
+                    case 'Privacy Policy':
+                    case 'Suppliers':
+                    case 'Our Stores':
+                        alert(`${text} page will be implemented here.`);
+                        break;
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>
